@@ -10,6 +10,7 @@ import Navigation from './routes/Navigation.js';
 
 
 
+
 export default function App() {
   const [auth, setAuth] = useState(undefined);
   // const authData = {
@@ -18,12 +19,13 @@ export default function App() {
 
   useEffect(() => {
     const token = getToken();
+    console.log(token+' es el token');
     if(!token){
       setAuth(null);
     }else{
       setAuth(decodeToken(token));
     }
-    //console.log(token);
+    
   }, []);
 
   const logout = () => {
@@ -43,13 +45,16 @@ export default function App() {
     [auth]
   );
 
-  if(auth == undefined) return null;
+
+  //La línea siguiente arreglaba el problema de que el login apareciía al buscar un usuario por url pero 
+  //al usarla ya no me muestra el login
+  //if(auth == undefined) return null; 
 
   return (
     <ApolloProvider client={client}>
-      <AuthContext.Provider value={authData}>
+       <AuthContext.Provider value={authData}> 
           {!auth ? <Auth/> : <Navigation/>}
-          <ToastContainer
+           <ToastContainer
             position="top-right"
             autoClose={5000}
             hideProgressBar
@@ -60,7 +65,7 @@ export default function App() {
             draggable
             pauseOnHover
           />
-      </AuthContext.Provider>
+      </AuthContext.Provider> 
     </ApolloProvider>
   );
 }
