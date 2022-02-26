@@ -3,7 +3,7 @@ import {ApolloProvider} from "@apollo/client";
 import { ToastContainer} from "react-toastify";
 import client from "./config/apollo.js";
 import Auth from './pages/Auth';
-import {getToken, decodeToken} from "./utils/token";
+import {getToken, decodeToken, removeToken } from "./utils/token";
 import AuthContext from './context/AuthContext.js';
 // import Home from "./pages/Home";
 import Navigation from './routes/Navigation.js';
@@ -29,7 +29,9 @@ export default function App() {
   }, []);
 
   const logout = () => {
-    console.log("Cerrar sesión");
+    // console.log("Cerrar sesión");
+      removeToken();
+      setAuth(null);
   };
 
   const setUser = (user) => {
