@@ -30,3 +30,15 @@ code {
 }
 
 
+.ui.button.btn-action{ 
+  background-color: $action !important;
+  color: $font-light !important;
+  border-color: $action; 
+}
+
+
+.ui.button.btn-danger{ 
+  background-color: $danger !important;
+  color: $font-light !important;
+  border-color: $danger; 
+}
