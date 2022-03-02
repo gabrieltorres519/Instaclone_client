@@ -8,6 +8,7 @@ import ModalBasic from "../../Modal/ModalBasic";
 import AvatarForm from '../AvatarForm';
 import HeaderProfile from './HeaderProfile/HeaderProfile';
 import SettingsForm from '../SettingsForm/SettingsForm';
+import Followers from './Followers';
 import ImageNotFound from "../../../assets/png/avatar.png";
 import "./Profile.scss";
 
@@ -70,7 +71,7 @@ export default function Profile(props) {
             </Grid.Column>
             <Grid.Column width={11} className='profile__right'>
                 <HeaderProfile getUser={getUser} auth={auth} handlerModal={handlerModal} />
-                <div>Followers</div>
+                <Followers username={username}/>
                 <div className='other' >
                     <p className='name' >{getUser.name}</p>
                     {getUser.siteWeb && (
