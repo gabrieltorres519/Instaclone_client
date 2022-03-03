@@ -1,13 +1,15 @@
-import React from 'react';
-import {Icon, Image} from "semantic-ui-react";
+import React, {useState} from 'react';
+import {Icon, Image, Modal} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import { GET_USER } from '../../../gql/user';
 import useAuth from "../../../hooks/useAuth";
+import ModalUpload from '../../Modal/ModalUpload';
 import ImageNotFound from "../../../assets/png/avatar.png";
 import "./RightHeader.scss";
 
 export default function RightHeader() {
+    const [showModal, setShowModal] = useState();
     const {auth} = useAuth();
     // console.log(data);
     const {data, loading, error} = useQuery(GET_USER,{
@@ -19,15 +21,19 @@ export default function RightHeader() {
 
   return (
   
-      <div className='right-header'>
-          <Link to="/">
-              <Icon name='home'/>
-          </Link>
-          <Icon name="plus"/>
-          <Link to={`/${auth.username}`}>
-              <Image src={getUser.avatar ? getUser.avatar : ImageNotFound} avatar/>
-          </Link>
-      </div>
+        <>
+            <div className='right-header'>
+                <Link to="/">
+                    <Icon name='home'/>
+                </Link>
+                <Icon name="plus" onClick={() => setShowModal(true)} />
+                <Link to={`/${auth.username}`}>
+                    <Image src={getUser.avatar ? getUser.avatar : ImageNotFound} avatar/>
+                </Link>
+            </div>
+            <ModalUpload show={showModal} setShow={setShowModal} />
     
+        </>
+
   )
 }
