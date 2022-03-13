@@ -39,3 +39,14 @@ export const GET_FOLLOWEDS = gql`
         }
     }
 `;
+
+
+export const GET_NOT_FOLLOWEDS = gql`
+    query getNotFolloweds{
+        getNotFolloweds{
+            username
+            name
+            avatar
+        }
+    }
+`;
